@@ -6,7 +6,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  sonarcloud:
+  CICD:
     name: SonarCloud & Deployment
     runs-on: ubuntu-latest
     steps:
