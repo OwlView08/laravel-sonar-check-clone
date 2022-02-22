@@ -23,5 +23,15 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Trigger next workflow
+        if: success()
+        uses: peter-evans/repository-dispatch@v1
+        with:
+              event-type: test deployment
+  Deploy:
+    name: test deployment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       - name: pipeline
         run: echo "Hi, This is our new pipeline"
