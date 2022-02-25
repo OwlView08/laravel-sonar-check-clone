@@ -18,7 +18,7 @@ jobs:
           Host staging
             HostName $SSH_HOST
             User $SSH_USER
-            IdentityFile ~/.ssh/private.key
+            IdentityFile ../private.key
             StrictHostKeyChecking no
           END
         env:
