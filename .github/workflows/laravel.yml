@@ -23,4 +23,4 @@ jobs:
          echo "security changes"
     - name: Disabling security group rule that created for deployment
       run: |
-         aws ec2 revoke-security-group-egress --group-id sg-08cc9ee9ad76571f2 --protocol tcp --port 22 --cidr 0.0.0.0/0
+         aws ec2 revoke-security-group-ingress --group-id sg-08cc9ee9ad76571f2 --protocol tcp --port 22 --cidr 0.0.0.0/0
