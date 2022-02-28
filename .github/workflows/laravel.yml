@@ -14,8 +14,10 @@ jobs:
     - name: Configuring security groups for deployment
       run: |
          sudo apt install awscli -y
-         aws configure set aws_access_key_id "${{ secrets.ACCESS_KEY }}"
-         aws configure set aws_secret_access_key_id "${{ secrets.SECRET_KEY }}"
+         mkdir ~/.aws/
+         echo aws_access_key_id=${{ secrets.ACCESS_KEY }} >> ~/.aws/credentials
+         echo aws_secret_access_key=${{ secrets.SECRET_KEY }} >> ~/.aws/credentials
+         echo region=${{ secrets.AWS_REGION }} >> ~/.aws/config
          aws ec2 authorize-security-group-ingress --group-id sg-08cc9ee9ad76571f2 --protocol tcp --port 22 --cidr 0.0.0.0/0
     - name: Deployment on Dev-First
       run: |
