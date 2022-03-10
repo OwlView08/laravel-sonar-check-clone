@@ -17,10 +17,10 @@ jobs:
          aws configure set aws_access_key_id "${{ secrets.ACCESS_KEY }}"
          aws configure set aws_secret_access_key "${{ secrets.SECRET_KEY }}"
          aws configure set region "${{ secrets.AWS_REGION }}"
-         aws ec2 authorize-security-group-ingress --group-id ${{ secrets.GROUPID }} --protocol tcp --port 22 --cidr ${{ secrets.SSH_CIDR }}
+         aws ec2 authorize-security-group-ingress --group-id ${{ secrets.GROUPID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
     - name: Deployment on Dev-First
       run: |
          echo "security changes"
     - name: Disabling security group rule that created for deployment
       run: |
- #        aws ec2 revoke-security-group-ingress --group-id ${{ secrets.GROUPID }} --protocol tcp --port 22 --cidr ${{ secrets.SSH_CIDR }}
+       # aws ec2 revoke-security-group-ingress --group-id ${{ secrets.GROUPID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
