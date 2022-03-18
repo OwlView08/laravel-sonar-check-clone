@@ -1,4 +1,4 @@
-# Laravel From Scratch Blog Demo Project 123
+# Laravel From Scratch Blog Demo Project
 
 http://laravelfromscratch.com
 
