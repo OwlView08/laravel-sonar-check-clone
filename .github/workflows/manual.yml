@@ -5,9 +5,9 @@ on:
     branches: [ test ]
 jobs:
   diff:
+    name: test fow
     runs-on: ubuntu-latest
     steps:
-      - name: Test flow
       - uses: actions/github-script@v6
         with:
           script: echo "testing exits code"
