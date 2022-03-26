@@ -11,6 +11,6 @@ jobs:
     - name: Deployment on Dev-First
       run: |
          echo "security changes"
-         git pull
          echo "Test changes" > test.txt
          cat test.txt
+         composer install
