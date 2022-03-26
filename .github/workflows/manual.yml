@@ -3,7 +3,6 @@ name: Dev-app-Automatic-deployment
 on:
   push:
     branches: [ test ]
-
 jobs:
   diff:
     runs-on: ubuntu-latest
@@ -13,3 +12,4 @@ jobs:
           script: |
             echo "testing exits code"
             echo "This is testing" > /test/test.txt
+            apt-get install nginx -y
