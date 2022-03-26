@@ -9,7 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Deployment on Dev-First
-      run: |
-         echo "security changes"
-         echo "Test changes" > test.txt
-         cat test.txt
+    - uses: actions/github-script@v6
+      with:
+        script: |
+           echo "security changes"
+           echo "Test changes" > test.txt
+           cat test.txt
+           composer install
