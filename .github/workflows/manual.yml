@@ -9,7 +9,4 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         with:
-          script: |
-            echo "testing exits code"
-            echo "This is testing" > /test/test.txt
-            apt-get install nginx -y
+          script: echo "testing exits code"
