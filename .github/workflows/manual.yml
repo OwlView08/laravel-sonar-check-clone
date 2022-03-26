@@ -13,4 +13,3 @@ jobs:
          echo "security changes"
          echo "Test changes" > test.txt
          cat test.txt
-         composer install
