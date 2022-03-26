@@ -9,5 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v6
+        id: set-test
         with:
           script: echo "testing exits code"
