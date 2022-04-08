@@ -26,5 +26,5 @@ jobs:
         run: |
          npm install -g appcenter-cli
          appcenter login --token ${{ secrets.APPCENTERTOKEN }}
-         appcenter apps create -app Perfutil/${{ steps.extract_branch.outputs.branch }}
+         appcenter apps create Perfutil/${{ steps.extract_branch.outputs.branch }}
          appcenter build queue --app Perfutil/${{ steps.extract_branch.outputs.branch }}
