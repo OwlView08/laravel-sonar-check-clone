@@ -1,10 +1,10 @@
 name: sonar-check
 
 on:
-  push:
-     branches: [ test-appcenter-trigger ]
-#  pull_request:
-#    types: [opened, synchronize, reopened]
+#  push:
+#     branches: [ test-appcenter-trigger ]
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
   sonarcloud:
     name: SonarCloud
@@ -21,13 +21,10 @@ jobs:
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch        
       - name: get branch name
-        run: echo ${{ steps.extract_branch.outputs.branch }}
-      
-      
-      
-#      - name: Appcenter trigger
-#        run: |
-#         npm install -g appcenter-cli
-#         appcenter login --token ${{ secrets.APPCENTERTOKEN }}
-#         appcenter apps create -app Perfutil
-#         appcenter build queue --app Perfutil/
+        run: echo ${{ steps.extract_branch.outputs.branch }}      
+      - name: Appcenter trigger
+        run: |
+         npm install -g appcenter-cli
+         appcenter login --token ${{ secrets.APPCENTERTOKEN }}
+         appcenter apps create -app Perfutil/${{ steps.extract_branch.outputs.branch }}
+         appcenter build queue --app Perfutil/${{ steps.extract_branch.outputs.branch }}
