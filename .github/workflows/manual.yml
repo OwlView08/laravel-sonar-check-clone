@@ -26,4 +26,4 @@ jobs:
         run: |
          npm install -g appcenter-cli
          appcenter login --token ${{ secrets.APPCENTERTOKEN }}
-         appcenter build queue --app Perfutil/${{ steps.extract_branch.outputs.branch }}
+         appcenter build queue --app Perfutil/Humm-UK-iOS -b ${{ steps.extract_branch.outputs.branch }}
