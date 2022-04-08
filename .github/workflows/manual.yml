@@ -1,15 +1,30 @@
-name: Dev-app-Automatic-deployment
+name: sonar-check
 
 on:
   push:
-    branches: [ test ]
-
+     branches: [ Humm-UK-Staging-pipeline ]
+#  pull_request:
+#    types: [opened, synchronize, reopened]
 jobs:
-  deploy:
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
     steps:
-    - name: Deployment on Dev-First
-      run: |
-         echo "security changes"
-         echo "Test changes" /test/test.txt
-         cat /test/test.txt
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch        
+      - name: get branch name
+        run: echo ${{ steps.extract_branch.outputs.branch }}      
+      - name: Appcenter trigger
+        run: |
+         npm install -g appcenter-cli
+         appcenter login --token ${{ secrets.APPCENTERTOKEN }}
+         appcenter apps create -app Perfutil/${{ steps.extract_branch.outputs.branch }}
+         appcenter build queue --app Perfutil/${{ steps.extract_branch.outputs.branch }}
