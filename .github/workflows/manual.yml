@@ -16,8 +16,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: nelonoel/branch-name@v1
-      - run: echo ${BRANCH_NAME}
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch        
+      - name: get branch name
+      - run: echo ${{ steps.extract_branch.outputs.branch }}
+      
+      
+      
 #      - name: Appcenter trigger
 #        run: |
 #         npm install -g appcenter-cli
