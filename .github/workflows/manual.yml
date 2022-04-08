@@ -21,7 +21,7 @@ jobs:
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch        
       - name: get branch name
-      - run: echo ${{ steps.extract_branch.outputs.branch }}
+        run: echo ${{ steps.extract_branch.outputs.branch }}
       
       
       
