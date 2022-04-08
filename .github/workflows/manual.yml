@@ -1,15 +1,24 @@
-name: Dev-app-Automatic-deployment
+name: sonar-check
 
 on:
-  push:
-    branches: [ test ]
-
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
-  deploy:
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
     steps:
-    - name: Deployment on Dev-First
-      run: |
-         echo "security changes"
-         echo "Test changes" /test/test.txt
-         cat /test/test.txt
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: nelonoel/branch-name@v1
+      - run: echo ${BRANCH_NAME}
+#      - name: Appcenter trigger
+#        run: |
+#         npm install -g appcenter-cli
+#         appcenter login --token ${{ secrets.APPCENTERTOKEN }}
+#         appcenter apps create -app Perfutil
+#         appcenter build queue --app Perfutil/
