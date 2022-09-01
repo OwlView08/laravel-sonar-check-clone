@@ -2,7 +2,7 @@
 
 http://laravelfromscratch.com
 
-## Installation php
+## Installation
 
 First clone this repository, install the dependencies, and setup your .env file.
 
